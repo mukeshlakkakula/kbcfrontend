@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:4000");
+const socket = io("https://kbcgamecmpassignment.onrender.com/");
 
 const QuestionScreen = () => {
   const [players, setPlayers] = useState([]);

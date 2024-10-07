@@ -85,7 +85,7 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import { Link } from "react-router-dom";
 
-const socket = io("http://localhost:4000");
+const socket = io("https://kbcgamecmpassignment.onrender.com/");
 
 const MobileScreen = () => {
   const [playerName, setPlayerName] = useState("");
