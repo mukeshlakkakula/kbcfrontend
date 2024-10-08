@@ -1,70 +1,188 @@
-# Getting Started with Create React App
+# KBC Game (React + Node.js + Socket.io)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A real-time KBC (Kaun Banega Crorepati) style quiz game built using React on the frontend, Node.js with Express and Socket.io on the backend.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Real-time quiz game where players can join and answer multiple-choice questions.
+- Socket.io used for real-time communication between players and the server.
+- Players are updated with new questions after they submit their answers.
+- Displays feedback for wrong answers and moves to the next question upon correct answers.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React.js
+- **Backend**: Node.js, Express, Socket.io
+- **Real-time Communication**: Socket.io
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Ensure you have the following installed on your local machine:
 
-### `npm run build`
+- [Node.js](https://nodejs.org/en/) (v12+)
+- [npm](https://www.npmjs.com/) (Node Package Manager)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository**:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   for Frontend
+   git clone https://github.com/mukeshlakkakula/kbcfrontend.git
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   for Backend
+   git clone https://github.com/mukeshlakkakula/kbcgamecmpassignment.git
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Navigate into the project directory**:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ``
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```
 
-## Learn More
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. **Install dependencies**:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   Navigate into both the frontend and backend directories and install the required npm packages.
 
-### Code Splitting
+   - Backend dependencies (Node.js, Express, Socket.io):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+     ```bash
+     cd Backend
+     npm install
+     ```
 
-### Analyzing the Bundle Size
+   - Frontend dependencies (React, Socket.io-client):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+     ```bash
+     cd ../Frontend
+     npm install
+     ```
 
-### Making a Progressive Web App
+### Running the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Backend (Server)
 
-### Advanced Configuration
+1. Navigate to the `Backend` directory:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   ```bash
+   cd Backend
+   ```
 
-### Deployment
+2. Start the server using `nodemon` or `node`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+   ```bash
+   nodemon index.js
+   ```
 
-### `npm run build` fails to minify
+   The server should be running on `http://localhost:4000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Frontend (Client)
+
+1. Navigate to the `Frontend` directory:
+
+   ```
+
+   ```
+
+2. Start the React development server:
+
+   ```bash
+   npm start
+   ```
+
+   The frontend should now be running on `http://localhost:3001`.
+
+### Game Flow
+
+1. Open the frontend in your browser at `http://localhost:3001`.
+2. Enter your name and click "Join" to join the quiz game.
+3. Answer the multiple-choice questions as they are presented.
+4. Correct answers will move the game to the next question. Incorrect answers will prompt a "Try Again" message.
+
+### Project Structure
+
+```
+kbc-game/
+├── Backend/              # Backend code for the game (Node.js, Express, Socket.io)
+│   ├── index.js          # Main server file
+│   └── package.json      # Backend dependencies
+├── Frontend/             # Frontend code for the game (React.js)
+│   ├── public/
+│   ├── src/
+│   │   ├── App.js        # Main React component
+│   │   ├── MobileScreen.js # Quiz game screen component
+│   │   └── index.js      # React entry point
+│   └── package.json      # Frontend dependencies
+└── README.md             # Project README file
+```
+
+### Backend (Server) Logic
+
+- **Server (`index.js`)**: The server handles incoming player connections, emits new questions, and processes player answers.
+
+  Key functionalities:
+
+  - Serve quiz questions in real-time.
+  - Emit feedback on correct or incorrect answers.
+  - Allow new players to join and participate in the game.
+
+### Frontend (Client) Logic
+
+- **MobileScreen (`MobileScreen.js`)**: The main component where the player interacts with the game. It handles:
+  - Joining the game.
+  - Displaying questions and answer options.
+  - Sending the selected answer to the backend.
+
+### Handling CORS
+
+Since the frontend and backend are running on different ports, CORS (Cross-Origin Resource Sharing) is handled using the `cors` middleware in the backend.
+
+The backend is configured to allow requests from `http://localhost:3001` using:
+
+```js
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin,X-Requested-With,Content-Type,Accept"
+  );
+  next();
+});
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+```
+
+### Socket.io Communication
+
+- The server listens for the following events:
+  - `joinGame`: Triggered when a new player joins the game.
+  - `submitAnswer`: Triggered when a player submits an answer.
+- The server emits:
+  - `question`: Sends a new question to all players.
+  - `correctAnswer`: Broadcasts when a player answers correctly.
+  - `wrongAnswer`: Sends feedback when a player answers incorrectly.
+
+### Error Handling
+
+If all questions are answered, a "Game Over" message is sent to all players, as indicated in the backend code:
+
+```js
+if (currentQuestionIndex >= questions.length) {
+  io.emit("gameOver");
+}
+```
+
+### Troubleshooting
+
+- **CORS errors**: Ensure that the backend server allows requests from your frontend by properly configuring CORS.
+- **Connection issues**: Make sure both the frontend and backend are running on the correct ports (`3001` for the frontend and `5000` for the backend).
