@@ -1,7 +1,7 @@
-// src/components/QuestionScreen.js
 import React, { useState, useEffect } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import io from "socket.io-client";
+import { Link } from "react-router-dom";
 
 const socket = io("https://kbcgamecmpassignment.onrender.com/");
 
@@ -11,17 +11,14 @@ const QuestionScreen = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    // Listen for new players joining
     socket.on("newPlayer", (playerName) => {
       setPlayers((prevPlayers) => [...prevPlayers, playerName]);
     });
 
-    // Listen for correct answer
     socket.on("correctAnswer", (playerName) => {
       setMessage(`Congratulations ${playerName}! You answered correctly.`);
     });
 
-    // Listen for question updates
     socket.on("question", (newQuestion) => {
       setMessage("");
       setQuestion(newQuestion);
@@ -44,6 +41,9 @@ const QuestionScreen = () => {
         {players.map((player, index) => (
           <p key={index}>{player}</p>
         ))}
+        <Link to="/mobile">
+          <button>Play</button>
+        </Link>
       </div>
       {question && (
         <div className="question-section">
